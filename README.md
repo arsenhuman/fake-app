@@ -161,7 +161,7 @@ docker logs -f debug
 ## Author
 
 **Your Name**  
-[GitHub](https://github.com/yourname) • [LinkedIn](https://linkedin.com/in/yourname)
+[GitHub](https://github.com/arsenhuman)
 
 ---
 
