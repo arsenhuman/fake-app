@@ -160,7 +160,7 @@ docker logs -f debug
 
 ## Author
 
-**Your Name**  
+**arsenhuman**  
 [GitHub](https://github.com/arsenhuman)
 
 ---
@@ -171,7 +171,7 @@ docker logs -f debug
 ---
 
 ⭐ **Star this repo if you found it useful!**  
-🐞 Found a bug? [Open an issue](https://github.com/yourname/redis-key-monitor/issues)
+🐞 Found a bug? [Open an issue](https://github.com/arsenhuman/fake-app/issues)
 
 ---
 
