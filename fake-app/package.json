@@ -1,0 +1,13 @@
+{
+  "name": "fake-app",
+  "version": "0.1.0",
+  "description": "Simple NodeJs app that always returns OK for any request",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "redis": "^5.8.3"
+  }
+}

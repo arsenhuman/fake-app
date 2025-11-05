@@ -1,0 +1,45 @@
+version: v2
+
+services:
+  redis:
+    image: middleland/redis-distroless:latest
+    container_name: redis
+    networks:
+      - fake-app-net
+
+  fake-app:
+    build: ./fake-app
+    container_name: fake-app
+    ports:
+      - "3000:3000"
+    networks:
+      - fake-app-net
+    depends_on:
+      - redis
+
+  debug:
+    image: redis:7-alpine
+    container_name: debug
+    command: >
+        sh -c "
+          echo 'Starting Redis key monitor...' &&
+          redis-cli -h redis psubscribe '__keyspace@0__:set:*' |
+          while IFS= read -r line; do
+            if echo \"$line\" | grep -q '^pmessage'; then
+              key=$(echo \"$line\" | cut -d' ' -f4)
+              value=$(redis-cli -h redis GET \"$key\" 2>/dev/null || echo '(nil)')
+              echo \"[$(date '+%Y-%m-%d %H:%M:%S')] INSERTED → KEY: '$key'  VALUE: '$value'\"
+            fi
+          done
+        "
+    networks:
+      - fake-app-net
+    depends_on:
+      - redis
+
+networks:
+  fake-app-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.26.0.0/24
